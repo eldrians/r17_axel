@@ -11,11 +11,14 @@
             <div class="flex flex-row gap-2">
                 <a title="Add New Person" data-bs-toggle="modal" data-bs-target="#createPerson"
                     class="bg-primary py-2 px-3 rounded text-xs shadow-md cursor-pointer">
-                    <span class="text-light capitalize font-semibold">+ create new</span>
+                    <span class="text-light capitalize font-semibold"><i class="fa fa-plus" aria-hidden="true"
+                            class=""></i> create
+                        new</span>
                 </a>
                 <a title="Import Data From URL" data-bs-toggle="modal" data-bs-target="#importData"
                     class="bg-green-600 py-2 px-3 rounded text-xs shadow-md cursor-pointer">
-                    <span class="text-light capitalize font-semibold">import</span>
+                    <span class="text-light capitalize font-semibold"><i class="fa fa-file" aria-hidden="true"></i>
+                        import</span>
                 </a>
             </div>
         </div>
@@ -43,6 +46,7 @@
             </div>
         </form>
 
+        {{-- table --}}
         <div class="flex flex-col h-[250px]">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
