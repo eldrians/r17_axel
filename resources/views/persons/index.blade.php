@@ -1,6 +1,6 @@
 @extends('persons.layout')
 @section('content')
-    <div>
+    <div class="h-full">
         {{-- header --}}
         <div class="w-full mb-8 flex flex-row justify-between items-center">
             <div>
@@ -20,7 +20,8 @@
             </div>
         </div>
 
-        <form method="GET" action="/search">
+        {{-- search bar --}}
+        <form method="GET" action="/search" class="mb-2">
             <div class="w-full flex flex-row justify-between">
                 <div class="flex flex-row gap-2 items-end">
                     <div>
@@ -42,51 +43,61 @@
             </div>
         </form>
 
-        <br />
-        <br />
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Nama</th>
-                        <th>Jabatan</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Alamat</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($persons as $item)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->jabatan }}</td>
-                            <td>{{ $item->jenis_kelamin }}</td>
-                            <td>{{ $item->alamat }}</td>
+        <div class="flex flex-col h-[250px]">
+            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full text-left text-xs">
+                            <thead class="border-b-2 border-secondary">
+                                <tr>
+                                    <th scope="col" class="px-6 py-2">No.</th>
+                                    <th scope="col" class="px-6 py-2">Nama</th>
+                                    <th scope="col" class="px-6 py-2">Jabatan</th>
+                                    <th scope="col" class="px-6 py-2">Jenis Kelamin</th>
+                                    <th scope="col" class="px-6 py-2">Alamat</th>
+                                    <th scope="col" class="px-6 py-2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($persons as $person)
+                                    <tr class="border-b transition duration-300 ease-in-out hover:bg-primary/10">
+                                        <td class="whitespace-nowrap px-6 py-2 font-medium">{{ $loop->iteration }}</td>
+                                        <td class="whitespace-nowrap px-6 py-2">{{ $person->nama }}</td>
+                                        <td class="whitespace-nowrap px-6 py-2">{{ $person->jabatan }}</td>
+                                        <td class="whitespace-nowrap px-6 py-2">{{ $person->jenis_kelamin }}</td>
+                                        <td class="whitespace-nowrap px-6 py-2">{{ $person->alamat }}</td>
+                                        <td class="whitespace-nowrap px-6 py-2">
+                                            <div class="flex flex-row gap-1 justify-center items-center">
+                                                <a title="edit" data-bs-toggle="modal"
+                                                    data-bs-target="#editPerson{{ $person->id }}"
+                                                    data-item-id="{{ $person }}"
+                                                    class="bg-secondary rounded text-xs shadow-md py-1 px-1.5 h-fit cursor-pointer">
+                                                    <span class="text-light">
+                                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                                    </span>
+                                                </a>
+                                                @include('persons.modalEdit', ['person' => $person])
 
-                            <td>
-
-                                <a class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#editPerson{{ $item->id }}" data-item-id="{{ $item }}">
-                                    edit
-                                </a>
-                                @include('persons.modalEdit', ['person' => $item])
-
-
-                                <form method="POST" action="{{ url('/person' . '/' . $item->id) }}" accept-charset="UTF-8"
-                                    style="display:inline">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Person"
-                                        onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o"
-                                            aria-hidden="true"></i> Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                                <form method="POST" action="{{ url('/person' . '/' . $person->id) }}"
+                                                    accept-charset="UTF-8">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit"
+                                                        class="bg-red-500 rounded text-xs shadow-md py-1 px-2 h-fit cursor-pointer"
+                                                        title="delete"
+                                                        onclick="return confirm(&quot;Confirm delete?&quot;)">
+                                                        <span class="text-light"><i class="fa fa-trash-o"
+                                                                aria-hidden="true"></i></span></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
