@@ -36,9 +36,20 @@
                                             <td>{{ $item->alamat }}</td>
 
                                             <td>
-                                                <a href="{{ url('/person/' . $item->id) }}" title="View Person"><button
-                                                        class="btn btn-info btn-sm"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i> View</button></a>
+                                                {{-- <a href="{{ url('/person/' . $item->id) }}" title="View Person">
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#addnew">
+                                                        Launch demo modal
+                                                    </button>
+                                                </a> --}}
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#addnew">
+                                                    Show
+                                                </button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#createPerson">
+                                                    Add
+                                                </button>
                                                 <a href="{{ url('/person/' . $item->id . '/edit') }}"
                                                     title="Edit Person"><button class="btn btn-primary btn-sm"><i
                                                             class="fa fa-pencil-square-o" aria-hidden="true"></i>
