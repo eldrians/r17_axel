@@ -25,7 +25,7 @@
 
         {{-- search bar --}}
         <form method="GET" action="/search" class="mb-2">
-            <div class="w-full flex flex-row justify-between">
+            <div class="w-full flex flex-row justify-between items-end">
                 <div class="flex flex-row gap-2 items-end">
                     <div>
                         <label for="search" class="block mb-1 ml-1 text-xs font-bold text-secondary">
@@ -47,7 +47,7 @@
         </form>
 
         {{-- table --}}
-        <div class="flex flex-col h-[250px]">
+        <div class="flex flex-col h-[300px]">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
@@ -63,9 +63,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($persons as $person)
+                                @foreach ($persons as $key => $person)
                                     <tr class="border-b transition duration-300 ease-in-out hover:bg-primary/10">
-                                        <td class="whitespace-nowrap px-6 py-2 font-medium">{{ $loop->iteration }}</td>
+                                        <td class="whitespace-nowrap px-6 py-2 font-medium">
+                                            {{ $persons->firstItem() + $key }}</td>
                                         <td class="whitespace-nowrap px-6 py-2">{{ $person->nama }}</td>
                                         <td class="whitespace-nowrap px-6 py-2">{{ $person->jabatan }}</td>
                                         <td class="whitespace-nowrap px-6 py-2">{{ $person->jenis_kelamin }}</td>
@@ -82,17 +83,15 @@
                                                 </a>
                                                 @include('persons.modalEdit', ['person' => $person])
 
-                                                <form method="POST" action="{{ url('/person' . '/' . $person->id) }}"
-                                                    accept-charset="UTF-8">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button type="submit"
-                                                        class="bg-red-500 rounded text-xs shadow-md py-1 px-2 h-fit cursor-pointer"
-                                                        title="delete"
-                                                        onclick="return confirm(&quot;Confirm delete?&quot;)">
-                                                        <span class="text-light"><i class="fa fa-trash-o"
-                                                                aria-hidden="true"></i></span></button>
-                                                </form>
+                                                <a title="delete" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDelete{{ $person->id }}"
+                                                    data-item-id="{{ $person }}"
+                                                    class="bg-red-500 rounded text-xs shadow-md py-1 px-1.5 h-fit cursor-pointer">
+                                                    <span class="text-light">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </span>
+                                                </a>
+                                                @include('persons.modalDelete', ['person' => $person])
                                             </div>
                                         </td>
                                     </tr>
@@ -101,6 +100,9 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-center mt-2 items-center">
+                {{ $persons->links() }}
             </div>
         </div>
 

@@ -7,7 +7,6 @@
             </div>
             <div class="modal-body">
                 <form method="GET" action="/fetch">
-                    {!! csrf_field() !!}
                     <div>
                         <label for="url" class="block mb-1 ml-1 text-xs font-bold text-secondary">
                             URL
@@ -19,7 +18,6 @@
                             focus:border-none
                             py-2 pl-3 pr-4">
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <div class="flex flex-row gap-2">
@@ -37,3 +35,5 @@
         </div>
     </div>
 </div>
+
+@include('sweetalert::alert')
