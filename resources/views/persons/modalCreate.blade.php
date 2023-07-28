@@ -16,12 +16,11 @@
                     <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control"></br>
                     <label>Alamat</label></br>
                     <input type="text" name="alamat" id="alamat" class="form-control"></br>
-                    <input type="submit" value="Save" class="btn btn-success"></br>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <input type="submit" value="Save Changes" class="btn btn-primary"></input>
+                </form>
             </div>
         </div>
     </div>

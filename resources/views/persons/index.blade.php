@@ -9,9 +9,18 @@
                         <h2>Laravel 9 Crud</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('/person/create') }}" class="btn btn-success btn-sm" title="Add New Person">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        <a class="btn btn-success btn-sm" title="Add New Person" data-bs-toggle="modal"
+                            data-bs-target="#createPerson">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add
                         </a>
+                        <form method="GET" action="/search">
+                            <div class="input-group">
+                                <input class="form-control" name="search" 
+                                placeholder="search..."
+                                value="{{ isset($search) ? $search : ''}}">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
                         <br />
                         <br />
                         <div class="table-responsive">
@@ -36,24 +45,14 @@
                                             <td>{{ $item->alamat }}</td>
 
                                             <td>
-                                                {{-- <a href="{{ url('/person/' . $item->id) }}" title="View Person">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#addnew">
-                                                        Launch demo modal
-                                                    </button>
-                                                </a> --}}
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#addnew">
-                                                    Show
-                                                </button>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#createPerson">
-                                                    Add
-                                                </button>
-                                                <a href="{{ url('/person/' . $item->id . '/edit') }}"
-                                                    title="Edit Person"><button class="btn btn-primary btn-sm"><i
-                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        Edit</button></a>
+
+                                                <a class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#editPerson{{ $item->id }}"
+                                                    data-item-id="{{ $item }}">
+                                                    edit
+                                                </a>
+                                                @include('persons.modalEdit', ['person' => $item])
+
 
                                                 <form method="POST" action="{{ url('/person' . '/' . $item->id) }}"
                                                     accept-charset="UTF-8" style="display:inline">

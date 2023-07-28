@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource("/person", PersonController::class);
+Route::get("/search", [PersonController::class, 'search']);
+Route::get("/fetch", [PersonController::class, 'fetchData']);

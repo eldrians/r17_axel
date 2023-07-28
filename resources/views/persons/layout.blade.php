@@ -13,7 +13,6 @@
     <div class="container">
         @yield('content')
     </div>
-    @include('persons.modal')
     @include('persons.modalCreate')
 </body>
 
