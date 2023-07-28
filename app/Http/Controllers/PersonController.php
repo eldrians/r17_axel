@@ -11,37 +11,37 @@ class PersonController extends Controller
 {
     public function index(): View
     {
-        $students = Person::all();
-        return view('students.index')->with('students', $students);
+        $persons = Person::all();
+        return view('persons.index')->with('persons', $persons);
     }
 
     public function create(): View
     {
-        return view('students.create');
+        return view('persons.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
         Person::create($input);
-        return redirect('student')->with('flash_message', 'Student Addedd!');
+        return redirect('person')->with('flash_message', 'person Addedd!');
     }
     public function show(string $id): View
     {
-        $student = Person::find($id);
-        return view('students.show')->with('students', $student);
+        $person = Person::find($id);
+        return view('persons.show')->with('persons', $person);
     }
     public function edit(string $id): View
     {
-        $student = Person::find($id);
-        return view('students.edit')->with('students', $student);
+        $person = Person::find($id);
+        return view('persons.edit')->with('persons', $person);
     }
     public function update(Request $request, string $id): RedirectResponse
     {
-        $student = Person::find($id);
+        $person = Person::find($id);
         $input = $request->all();
-        $student->update($input);
-        return redirect('student')->with('flash_message', 'student Updated!');
+        $person->update($input);
+        return redirect('person')->with('flash_message', 'person Updated!');
     }
 
     public function destroy(string $id): RedirectResponse
