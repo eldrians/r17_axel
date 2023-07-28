@@ -29,22 +29,24 @@ class PersonController extends Controller
         return view('persons.index', compact('persons', 'search'));
     }
 
-    public function fetchData()
+    public function fetchData(Request $request)
     {
-        $res = Http::get("https://r17group.id/test-candidate/");
+
+        $res = Http::get($request->url);
 
         $persons = json_decode($res->body());
         $person = new Person();
         // foreach ($persons as $p) {
-        $person->id = $persons[0]->id;
-        $person->nama = $persons[0]->nama;
-        $person->jabatan = $persons[0]->jabatan;
-        $person->jenis_kelamin = $persons[0]->jenis_kelamin;
-        $person->alamat = $persons[0]->alamat;
+        $person->id = $persons[31]->id;
+        $person->nama = $persons[31]->nama;
+        $person->jabatan = $persons[31]->jabatan;
+        $person->jenis_kelamin = $persons[31]->jenis_kelamin;
+        $person->alamat = $persons[31]->alamat;
         $person->save();
         // }
 
-        return "Data Masuk";
+        $persons_data = Person::all();
+        return view('persons.index')->with('persons', $persons_data);
     }
 
     public function create(): View
