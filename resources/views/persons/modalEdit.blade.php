@@ -3,30 +3,76 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addnewModalLabel">Modal title</h1>
+                <h2 class="modal-title fs-5" id="addnewModalLabel">Edit data {{ $person->nama }}</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('person/' . $person->id) }}" method="post">
+                <form action="{{ url('person/' . $person->id) }}" method="post" class="flex flex-col gap-3">
                     {!! csrf_field() !!}
                     @method('PATCH')
                     <input type="hidden" name="id" id="id" value="{{ $person->id }}" id="id" />
-                    <label>Nama</label></br>
-                    <input type="text" name="nama" id="nama" value="{{ $person->nama }}"
-                        class="form-control"></br>
-                    <label>Jabatan</label></br>
-                    <input type="text" name="jabatan" id="jabatan" value="{{ $person->jabatan }}"
-                        class="form-control"></br>
-                    <label>Jenis Kelamin</label></br>
-                    <input type="text" name="jenis_kelamin" id="jenis_kelamin" value="{{ $person->jenis_kelamin }}"
-                        class="form-control"></br>
-                    <label>Alamat</label></br>
-                    <input type="text" name="alamat" id="alamat" value="{{ $person->alamat }}"
-                        class="form-control"></br>
+                    <div>
+                        <label for="nama" class="block mb-1 ml-1 text-xs font-bold text-secondary">
+                            Nama
+                        </label>
+                        <input type="text" name="nama" id="nama" placeholder="nama"
+                            value="{{ $person->nama }}"
+                            class="bg-transparent shadow-sm  text-secondary border-[0.5px]
+                            text-xs rounded-md focus:outline-primary focus:outline-[1px] focus:ring-blue-200  block w-full 
+                            focus:border-none
+                            py-2 pl-3 pr-4">
+                    </div>
+                    <div>
+                        <label for="jabatan" class="block mb-1 ml-1 text-xs font-bold text-secondary">
+                            Jabatan
+                        </label>
+                        <input type="text" name="jabatan" id="jabatan" placeholder="jabatan"
+                            value="{{ $person->jabatan }}"
+                            class="bg-transparent shadow-sm  text-secondary border-[0.5px]
+                            text-xs rounded-md focus:outline-primary focus:outline-[1px] focus:ring-blue-200  block w-full 
+                            focus:border-none
+                            py-2 pl-3 pr-4">
+                    </div>
+                    <div>
+                        <label for="jenis_kelamin" class="block mb-1 ml-1 text-xs font-bold text-secondary">
+                            Jenis Kelamin
+                        </label>
+                        <div class="flex items-center ml-2 mb-1">
+                            <input id="male" type="radio" value="Laki-laki" name="jenis_kelamin"
+                                class="w-2 h-2 bg-light border-secondary"
+                                @if ($person->jenis_kelamin === 'Laki-laki') checked @endif>
+                            <label for="male" class="ml-2 text-xs text-secondary ">Laki-laki</label>
+                        </div>
+                        <div class="flex items-center ml-2">
+                            <input id="female" type="radio" value="Perempuan" name="jenis_kelamin"
+                                class="w-2 h-2 bg-light border-secondary"
+                                @if ($person->jenis_kelamin === 'Perempuan') checked @endif>
+                            <label for="female" class="ml-2 text-xs text-secondary ">Perempuan</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="alamat" class="block mb-1 ml-1 text-xs font-bold text-secondary">
+                            Alamat
+                        </label>
+                        <input type="text" name="alamat" id="alamat" placeholder="alamat"
+                            value="{{ $person->alamat }}"
+                            class="bg-transparent shadow-sm  text-secondary border-[0.5px]
+                            text-xs rounded-md focus:outline-primary focus:outline-[1px] focus:ring-blue-200  block w-full 
+                            focus:border-none
+                            py-2 pl-3 pr-4">
+                    </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="submit" value="Save Changes" class="btn btn-primary"></input>
+                <div class="flex flex-row gap-2">
+                    <button type="button" title="close" data-bs-dismiss="modal"
+                        class="bg-red-500 py-2 px-3 rounded text-xs shadow-md cursor-pointer">
+                        <span class="text-light capitalize font-semibold">close</span>
+                    </button>
+                    <button type="submit" title="submit"
+                        class="bg-primary py-2 px-3 rounded text-xs shadow-md cursor-pointer">
+                        <span class="text-light capitalize font-semibold">Simpan</span>
+                    </button>
+                </div>
                 </form>
             </div>
         </div>

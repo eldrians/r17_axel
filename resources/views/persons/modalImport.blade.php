@@ -2,20 +2,36 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addnewModalLabel">Modal Import</h1>
+                <h2 class="modal-title fs-5" id="addnewModalLabel">Import Data</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {{-- <form method="GET" action="/fetch">
-                <div>
-                    <input name="url" placeholder="url..." value="{{ isset($url) ? $url : '' }}">
-                    <button type="submit">Url</button>
-                </div>
-            </form> --}}
+                <form method="GET" action="/fetch">
+                    {!! csrf_field() !!}
+                    <div>
+                        <label for="url" class="block mb-1 ml-1 text-xs font-bold text-secondary">
+                            URL
+                        </label>
+                        <input type="text" name="url" id="url" placeholder="url"
+                            value="{{ isset($url) ? $url : '' }}"
+                            class="bg-transparent shadow-sm  text-secondary border-[0.5px]
+                            text-xs rounded-md focus:outline-primary focus:outline-[1px] focus:ring-blue-200  block w-full 
+                            focus:border-none
+                            py-2 pl-3 pr-4">
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="submit" value="Save Changes" class="btn btn-primary"></input>
+                <div class="flex flex-row gap-2">
+                    <button type="button" title="close" data-bs-dismiss="modal"
+                        class="bg-red-500 py-2 px-3 rounded text-xs shadow-md cursor-pointer">
+                        <span class="text-light capitalize font-semibold">close</span>
+                    </button>
+                    <button type="submit" title="submit"
+                        class="bg-primary py-2 px-3 rounded text-xs shadow-md cursor-pointer">
+                        <span class="text-light capitalize font-semibold">Simpan</span>
+                    </button>
+                </div>
                 </form>
             </div>
         </div>

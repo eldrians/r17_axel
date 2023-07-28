@@ -32,11 +32,16 @@
                         <label for="jenis_kelamin" class="block mb-1 ml-1 text-xs font-bold text-secondary">
                             Jenis Kelamin
                         </label>
-                        <input type="text" name="jenis_kelamin" id="jenis_kelamin" placeholder="jenis_kelamin"
-                            class="bg-transparent shadow-sm  text-secondary border-[0.5px]
-                            text-xs rounded-md focus:outline-primary focus:outline-[1px] focus:ring-blue-200  block w-full 
-                            focus:border-none
-                            py-2 pl-3 pr-4">
+                        <div class="flex items-center ml-2 mb-1">
+                            <input id="male" type="radio" value="Laki-laki" name="jenis_kelamin"
+                                class="w-2 h-2 bg-light border-secondary">
+                            <label for="male" class="ml-2 text-xs text-secondary ">Laki-laki</label>
+                        </div>
+                        <div class="flex items-center ml-2">
+                            <input id="female" type="radio" value="Perempuan" name="jenis_kelamin"
+                                class="w-2 h-2 bg-light border-secondary">
+                            <label for="female" class="ml-2 text-xs text-secondary ">Perempuan</label>
+                        </div>
                     </div>
                     <div>
                         <label for="alamat" class="block mb-1 ml-1 text-xs font-bold text-secondary">
