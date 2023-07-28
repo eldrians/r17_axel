@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layout');
+    return view('persons.layout');
 });
 
-Route::resource("/student", PersonController::class);
+Route::resource("/person", PersonController::class);

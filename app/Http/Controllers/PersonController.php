@@ -47,6 +47,6 @@ class PersonController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         Person::destroy($id);
-        return redirect('student')->with('flash_message', 'Student deleted!');
+        return redirect('person')->with('flash_message', 'Person deleted!');
     }
 }
