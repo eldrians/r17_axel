@@ -2,7 +2,7 @@
 @section('content')
     <div>
         {{-- header --}}
-        <div class="w-full mb-12 flex flex-row justify-between items-center">
+        <div class="w-full mb-8 flex flex-row justify-between items-center">
             <div>
                 <h1 class="text-3xl font-regular text-primary">R17 <span class="font-extrabold text-secondary">Group</span>
                 </h1>
@@ -20,22 +20,27 @@
             </div>
         </div>
 
-        <div class="w-full border">
-            <form method="GET" action="/search">
-                <div>
-                    <input name="search" placeholder="search..." value="{{ isset($search) ? $search : '' }}">
-                    <button type="submit">Search</button>
+        <form method="GET" action="/search">
+            <div class="w-full flex flex-row justify-between">
+                <div class="flex flex-row gap-2 items-end">
+                    <div>
+                        <label for="search" class="block mb-1 ml-1 text-xs font-bold text-secondary">
+                            What are you looking for?
+                        </label>
+                        <input name="search" placeholder="Search ..." value="{{ isset($search) ? $search : '' }}"
+                            class="bg-transparent shadow-sm  text-secondary border-[0.5px]
+                            text-xs rounded-md focus:outline-primary focus:outline-[1px] focus:ring-blue-200  block w-full 
+                            focus:border-none
+                            py-2 pl-3 pr-4"
+                            id="search" type="text">
+                    </div>
+                    <button type="submit"
+                        class="py-2 px-2.5 shadow-md h-fit text-xs border border-primary rounded text-primary font-bold">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </div>
-                <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
-                        name</label>
-                    <input type="text" id="first_name"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="John" required>
-                </div>
-            </form>
-        </div>
-
+            </div>
+        </form>
 
         <br />
         <br />
