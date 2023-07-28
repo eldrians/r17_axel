@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('persons.layout');
-});
+// Route::get('/', function () {
+//     return view('persons.layout');
+// });
 
-Route::resource("/person", PersonController::class);
+Route::resource("/", PersonController::class);
 Route::get("/search", [PersonController::class, 'search']);
 Route::get("/fetch", [PersonController::class, 'fetchData']);
