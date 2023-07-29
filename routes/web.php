@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PersonController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('persons.layout');
-// });
+Route::get('/', function () {
+    return Redirect::to('/person');
+});
 
-Route::resource("/", PersonController::class);
+Route::resource("/person", PersonController::class);
 Route::get("/search", [PersonController::class, 'search']);
 Route::get("/fetch", [PersonController::class, 'fetchData']);

@@ -13,7 +13,7 @@ class PersonController extends Controller
 {
     public function index(): View
     {
-        $persons = Person::paginate(5);
+        $persons = Person::orderBy('created_at', 'desc')->paginate(5);
         return view('persons.index')->with('persons', $persons);
     }
 
@@ -27,7 +27,7 @@ class PersonController extends Controller
                 ->orWhere('alamat', 'like', "%$search%");
         });
 
-        $persons = $personsx->paginate(5);
+        $persons = $personsx->orderBy('created_at', 'desc')->paginate(5);
 
         return view('persons.index', compact('persons', 'search'));
     }
@@ -48,7 +48,7 @@ class PersonController extends Controller
             $person->save();
         }
 
-        $persons_data = Person::paginate(5);
+        $persons_data = Person::orderBy('created_at', 'desc')->paginate(5);
         Alert::success('Congrats', 'Data berhasil diambil');
         return redirect('person')->with('persons', $persons_data);
     }

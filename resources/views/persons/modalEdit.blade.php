@@ -8,9 +8,9 @@
             </div>
             <div class="modal-body">
                 <form action="{{ url('person/' . $person->id) }}" method="post" class="flex flex-col gap-3">
-                    {!! csrf_field() !!}
+                    @csrf
                     @method('PATCH')
-                    <input type="hidden" name="id" id="id" value="{{ $person->id }}" id="id" />
+                    <input type="hidden" name="id" value="{{ $person->id }}" id="id" />
                     <div>
                         <label for="nama" class="block mb-1 ml-1 text-xs font-bold text-secondary">
                             Nama

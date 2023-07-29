@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('person') }}" method="post" class="flex flex-col gap-3">
+                <form action="{{ url('/person') }}" method="post" class="flex flex-col gap-3">
                     {!! csrf_field() !!}
                     <div>
                         <label for="nama" class="block mb-1 ml-1 text-xs font-bold text-secondary">
